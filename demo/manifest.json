@@ -23,6 +23,7 @@
 	"browser_action": 
 	{
 		"default_icon": "img/icon.png",
+		// 图标悬停时的标题，可选
 		"default_title": "这是一个示例Chrome插件",
 		"default_popup": "popup.html"
 	},
@@ -38,7 +39,10 @@
 	[
 		{
 			"matches": ["http://*/*", "https://*/*"],
-			"js": ["js/content-script.js"]
+			"js": ["js/jquery-1.8.3.js", "js/content-script.js"],
+			"css": [],
+			// 代码注入的时间，可选值： "document_start", "document_end", or "document_idle"，最后一个表示页面空闲时，默认document_idle
+			"run_at": "document_start"
 		}
 	],
 	// 权限申请
@@ -46,13 +50,18 @@
 	[
 		"contextMenus", // 右键菜单
 		"tabs", // 标签
-		"notifications"
+		"notifications", // 通知
+		"http://*/*", // 可以通过executeScript或者insertCSS访问的网站
+		"https://*/*" // 可以通过executeScript或者insertCSS访问的网站
 	],
 	// 插件主页，这个很重要，不要浪费了这个免费广告位
 	"homepage_url": "https://www.baidu.com",
+	// 覆盖浏览器默认页面
 	"chrome_url_overrides":
 	{
+		// 覆盖浏览器默认的新标签页
     	"newtab": "newtab.html"
   	},
+	// devtools页面入口，注意只能指向一个HTML文件，不能是JS文件
   	"devtools_page": "devtools.html"
 }

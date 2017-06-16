@@ -1,4 +1,4 @@
-// 右键菜单演示
+//-------------------- 右键菜单演示 ------------------------//
 chrome.contextMenus.create({
 	title: "测试右键菜单",
 	onclick: function(){
@@ -19,14 +19,43 @@ chrome.contextMenus.create({
 		chrome.tabs.create({url: 'https://www.baidu.com/s?ie=utf-8&wd=' + encodeURI(params.selectionText)});
 	}
 });
-
-// badge 演示
-// chrome.browserAction.setBadgeText({text: 'new'});
-// chrome.browserAction.setBadgeBackgroundColor({color: [255, 0, 0, 255]});
-
-chrome.tabs.onCreated.addListener(function(activeInfo)
-{
-	//alert(activeInfo.tabId)
-	console.log(activeInfo);
-	chrome.pageAction.show(activeInfo.tabId);
+chrome.contextMenus.create({
+	title: "获取当前页面tabId",
+	onclick: function() {
+		chrome.tabs.query({active: true, currentWindow: true}, function(tabs)
+		{
+			alert('当前tabId：' + (tabs.length ? tabs[0].id : '未知'));
+		});
+	}
 });
+
+
+
+
+//-------------------- badge演示 ------------------------//
+(function()
+{
+	var showBadge = false;
+	var menuId = chrome.contextMenus.create({
+		title: '显示图标上的Badge',
+		type: 'checkbox',
+		checked: false,
+		onclick: function() {
+			if(!showBadge)
+			{
+				chrome.browserAction.setBadgeText({text: 'New'});
+				chrome.browserAction.setBadgeBackgroundColor({color: [255, 0, 0, 255]});
+				chrome.contextMenus.update(menuId, {title: '隐藏图标上的Badge', checked: true});
+			}
+			else
+			{
+				chrome.browserAction.setBadgeText({text: ''});
+				chrome.browserAction.setBadgeBackgroundColor({color: [0, 0, 0, 0]});
+				chrome.contextMenus.update(menuId, {title: '显示图标上的Badge', checked: false});
+			}
+			showBadge = !showBadge;
+		}
+	});
+})();
+
+
