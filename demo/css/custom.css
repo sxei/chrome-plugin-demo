@@ -1,0 +1,71 @@
+.chrome-plugin-demo-panel {
+	position: fixed;
+	right: 0;
+	bottom: 10px;
+	background: #3385ff;
+	padding: 10px;
+    box-shadow: 0px 0px 10px #002761;
+    border-radius: 3px;
+    color: white;
+}
+.chrome-plugin-demo-panel a{
+	color: white;
+    text-decoration: none;
+	font-size: 16px;
+}
+.chrome-plugin-demo-panel a:hover{
+    text-decoration: underline;
+    color: #ffee08;
+}
+.chrome-plugin-simple-tip {
+    position: fixed;
+    left: 20px;
+    padding: 16px 10px;
+    top: 30px;
+    color: white;
+    min-width: 150px;
+	max-width: 700px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 16px;
+    background: #70a800;
+    background-image: linear-gradient(to bottom, #95cc2a, #70a800);
+    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+	transition: top .4s;
+}
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+@-webkit-keyframes slideInLeft {
+    0% {
+        -webkit-transform: translate3d(-100%,0,0);
+        transform: translate3d(-100%,0,0);
+        visibility: visible
+    }
+
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0)
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        -webkit-transform: translate3d(-100%,0,0);
+        transform: translate3d(-100%,0,0);
+        visibility: visible
+    }
+
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0)
+    }
+}
+
+.slideInLeft {
+    -webkit-animation-name: slideInLeft;
+    animation-name: slideInLeft
+}

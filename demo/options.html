@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<style>
+	body{font-size: 16px;width: 400px; height: 300px;padding: 10px;font-family: 'Microsoft Yahei'; }
+	#status {color:red;}
+	</style>
+	<title>插件配置页</title>
+</head>
+<body>
+	<h1>简单的配置页</h1>
+	<p>（功能很无聊，纯属演示功能）</p>
+	<div>
+		<label>请选择popup页面背景色：</label>
+		<select id="color">
+			<option value="white">white</option>
+			<option value="red">red</option>
+			<option value="green">green</option>
+			<option value="blue">blue</option>
+			<option value="yellow">yellow</option>
+		</select>
+	</div>
+	<div>
+		<label><input type="checkbox" id="show_image"/>允许网页显示图片</label>
+	</div>
+	<a href="javascript:;" id="save">保存配置</a>
+	<div id="status"></div>
+
+	<script src="js/options.js"></script>
+</body>
+</html>

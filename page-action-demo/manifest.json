@@ -1,0 +1,33 @@
+{
+	// 清单文件的版本，这个必须写，而且必须是2
+	"manifest_version": 2,
+	// 插件的名称
+	"name": "page-action-demo",
+	// 插件的版本
+	"version": "1.0.0",
+	// 插件描述
+	"description": "pageAction演示",
+	// 图标，一般偷懒全部用一个尺寸的也没问题
+	"icons":
+	{
+		"16": "img/icon.png",
+		"48": "img/icon.png",
+		"128": "img/icon.png"
+	},
+	// 当某些特定页面打开才显示的图标
+	"page_action":
+	{
+		"default_icon": "img/icon.png",
+		"default_title": "我是pageAction",
+		"default_popup": "popup.html"
+	},
+	// 权限申请
+	"permissions":
+	[
+		"declarativeContent"
+	],
+	"background":
+	{
+		"scripts": ["js/background.js"]
+	}
+}

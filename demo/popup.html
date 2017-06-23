@@ -10,10 +10,59 @@
 		width: 500px;
 		min-height: 100px;
 	}
+	a {margin-right: 10px;}
 	</style>
 </head>
 <body>
 	<h1>这是一个popup页面！</h1>
+	<h2>background</h2>
+	<div>
+		<a href="#" id="open_background">打开background</a>
+		<a href="#" id="invoke_background_js">调用background页JS方法</a>
+		<a href="#" id="get_background_title">获取background页的标题</a>
+		<a href="#" id="set_background_title">设置background页标题</a>
+		(验证background生命周期和单实例特性)
+	</div>
+	<h2>窗口操作演示</h2>
+	<div>
+		<a href="#" id="open_new_window">新窗口打开百度</a>
+		<a href="#" id="custom_window_size">执行简单的窗口动画</a>
+		<a href="#" id="max_current_window">将当前窗口最大化</a>
+		<a href="#" id="min_current_window">将当前窗口最小化</a>
+		<a href="#" id="close_current_window">关闭当前窗口所有标签(慎点)</a>
+	</div>
+	<h2>标签操作演示</h2>
+	<div>
+		<a href="#" id="open_url_new_tab">新标签打开百度</a>
+		<a href="#" id="open_url_current_tab">当前标签打开网页</a>
+		<a href="#" id="get_current_tab_id">获取当前标签页ID</a>
+		<a href="#" id="highlight_tab">切换到第一个标签</a>
+	</div>
+	<h2>popup与content-script交互</h2>
+	<div>
+		<a href="#" id="send_message_to_content_script">短连接发送消息到content-script</a>
+		<a href="#" id="connect_to_content_script">长连接发送消息到content-script</a>
+	</div>
+	<h2>DOM交互演示</h2>
+	<div>
+		<a href="#" id="update_bg_color">修改页面背景色(通过executeScript实现)</a>
+		<a href="#" id="update_font_size">修改字体大小(通过sendMessage实现)</a>
+	</div>
+	<h2>国际化演示</h2>
+	<div>
+		<p><span id="test_i18n"></span> (另外请到插件列表页查看描述的变化)</p>
+	</div>
+	<h2>其它</h2>
+	<div>
+		<a href="#" id="show_badge">显示badge</a>
+		<a href="#" id="hide_badge">隐藏badge</a>
+		<a href="#" id="show_notification">显示桌面通知</a>
+		<a href="#" id="check_media">检测网页视频</a>
+	</div>
+	<h2>更多</h2>
+	<div>
+		百度广告，右键菜单，omnibox，图片大小演示，devtools演示，sidebar演示，
+	</div>
 	<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 	<script type="text/javascript" src="js/popup.js"></script>
 </body>
