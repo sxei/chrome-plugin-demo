@@ -76,21 +76,21 @@
 	"chrome_url_overrides":
 	{
 		// 覆盖浏览器默认的新标签页
-    	"newtab": "newtab.html"
-  	},
+		"newtab": "newtab.html"
+	},
 	// Chrome40以前的插件配置页写法
 	"options_page": "options.html",
 	// Chrome40以后的插件配置页写法，如果2个都写，新版Chrome只认后面这一个
 	"options_ui":
 	{
-    	"page": "options.html",
+		"page": "options.html",
 		// 添加一些默认的样式，推荐使用
-    	"chrome_style": true
+		"chrome_style": true
 	},
 	// 向地址栏注册一个关键字以提供搜索建议，只能设置一个关键字
 	"omnibox": { "keyword" : "go" },
 	// 默认语言
 	"default_locale": "zh_CN",
 	// devtools页面入口，注意只能指向一个HTML文件，不能是JS文件
-  	"devtools_page": "devtools.html"
+	"devtools_page": "devtools.html"
 }
