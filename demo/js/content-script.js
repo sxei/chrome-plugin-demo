@@ -33,13 +33,22 @@ document.addEventListener('DOMContentLoaded', function()
 			temp.innerHTML = css;
 			console.log('已注入自定义CSS！');
 			// 屏蔽百度推广信息
-			$('[data-tuiguang]').parents('[data-click]').remove();
+			removeAdByJs();
+			// 这种必须用JS移除的广告一般会有延迟，干脆每隔一段时间清楚一次
+			interval = setInterval(removeAdByJs, 2000);
+			
 			// 重新搜索时页面不会刷新，但是被注入的style会被移除，所以需要重新执行
 			temp.addEventListener('DOMNodeRemoved', function(e)
 			{
 				console.log('自定义CSS被移除，重新注入！');
+				if(interval) clearInterval(interval);
 				fuckBaiduAD();
 			});
+		}
+		let interval = 0;
+		function removeAdByJs()
+		{
+			$('[data-tuiguang]').parents('[data-click]').remove();
 		}
 		fuckBaiduAD();
 		initCustomPanel();
@@ -77,7 +86,7 @@ function injectCustomJs(jsPath)
 		// 放在页面不好看，执行完后移除掉
 		this.parentNode.removeChild(this);
 	};
-	document.head.appendChild(temp);
+	document.body.appendChild(temp);
 }
 
 // 接收来自后台的消息

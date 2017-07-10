@@ -63,7 +63,7 @@
 		"tabs", // 标签
 		"notifications", // 通知
 		"webRequest", // web请求
-		"webRequestBlocking",
+		"webRequestBlocking", // 阻塞式web请求
 		"storage", // 插件本地存储
 		"http://*/*", // 可以通过executeScript或者insertCSS访问的网站
 		"https://*/*" // 可以通过executeScript或者insertCSS访问的网站
