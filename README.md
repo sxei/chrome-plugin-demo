@@ -835,7 +835,7 @@ Chrome插件的JS主要可以分为这5类：`injected script`、`content-script
 ## 调试方式对比
 
 | JS类型 | 调试方式 | 图片说明 |
-| ------------ | ------------ |
+| ------------ | ------------ | ------ |
 | injected script | 直接普通的F12即可  | 懒得截图 |
 | content-script | 打开Console,如图切换 | ![](http://image.liuxianan.com/201612/20161220_105526_629_8533.png) |
 | popup-js | popup页面右键审查元素 | ![](http://image.liuxianan.com/201612/20161220_105716_178_6900.png) |
