@@ -12,6 +12,12 @@ demo部分截图：
 
 ![](http://image.liuxianan.com/201707/20170710_223150_516_6129.png)
 
+## 仓库说明
+
+* `full-chrome-plugin-demo`：大部分demo代码都在这个仓库；
+* `simple-chrome-plugin-demo`：最精简的Chrome仓库模板，当需要快速写一个简单仓库时可以基于这个模板；
+* `page-action-demo`：关于`page-action`部分的demo代码，由于这部分代码和`full-chrome-plugin-demo`冲突，所以单独拿出来；
+
 # 前言
 
 ## 什么是Chrome插件
