@@ -12,6 +12,8 @@ $(function() {
 
 });
 
+
+
 // 打开后台页
 $('#open_background').click(e => {
 	window.open(chrome.extension.getURL('background.html'));
@@ -37,7 +39,16 @@ $('#set_background_title').click(e => {
 	alert('修改成功！');
 });
 
-// 自定义窗体大小
+
+/*- - 窗口操作 - -  */
+
+// 打开新窗口
+$('#open_new_window').click(() => {
+    chrome.windows.create({state: 'maximized'});
+});
+
+
+// 窗口动画
 $('#custom_window_size').click(() => {
 	chrome.windows.getCurrent({}, (currentWindow) => {
 		var startLeft = 10;
@@ -72,10 +83,7 @@ $('#min_current_window').click(() => {
 	});
 });
 
-// 打开新窗口
-$('#open_new_window').click(() => {
-	chrome.windows.create({state: 'maximized'});
-});
+
 
 // 关闭全部
 $('#close_current_window').click(() => {
@@ -83,6 +91,11 @@ $('#close_current_window').click(() => {
 		chrome.windows.remove(currentWindow.id);
 	});
 });
+
+
+
+/* - - -- 标签操作- -- -- - */
+
 
 // 新标签打开网页
 $('#open_url_new_tab').click(() => {
@@ -103,10 +116,13 @@ $('#get_current_tab_id').click(() => {
 	});
 });
 
-// 高亮tab
+// 切换到第一个标签
 $('#highlight_tab').click(() => {
 	chrome.tabs.highlight({tabs: 0});
 });
+
+
+/* - - -- - -- - - - - - - -- - - - - - - -- - - - - - - - - - */
 
 // popup主动发消息给content-script
 $('#send_message_to_content_script').click(() => {
@@ -123,6 +139,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
 	sendResponse('我是popup，我已收到你的消息：' + JSON.stringify(request));
 });
 
+
+
 // popup与content-script建立长连接
 $('#connect_to_content_script').click(() => {
 	getCurrentTabId((tabId) => {
@@ -137,6 +155,11 @@ $('#connect_to_content_script').click(() => {
 		});
 	});
 });
+
+
+
+
+/* - -- - - - - - - -- -  - - func- - - --  - - - - - - -  - - - - - -- - */
 
 // 获取当前选项卡ID
 function getCurrentTabId(callback)
@@ -171,13 +194,14 @@ function sendMessageToContentScript(message, callback)
 	});
 }
 
+
 // 向content-script注入JS片段
 function executeScriptToCurrentTab(code)
 {
-	getCurrentTabId((tabId) =>
-	{
-		chrome.tabs.executeScript(tabId, {code: code});
-	});
+    getCurrentTabId((tabId) =>
+    {
+        chrome.tabs.executeScript(tabId, {code: code});
+    });
 }
 
 

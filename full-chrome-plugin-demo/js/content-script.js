@@ -1,4 +1,7 @@
-﻿console.log('这是content script!');
+﻿// 向H5页面注入JS 或者 css;
+// content-scripts和原始页面共享DOM，但是不共享JS，如要访问页面JS（例如某个JS变量），只能通过injected js来实现
+
+console.log('这是content script!');
 
 // 注意，必须设置了run_at=document_start 此段代码才会生效
 document.addEventListener('DOMContentLoaded', function()
@@ -56,6 +59,22 @@ document.addEventListener('DOMContentLoaded', function()
 	}
 });
 
+// 向页面注入JS
+function injectCustomJs(jsPath)
+{
+    jsPath = jsPath || 'js/inject.js';
+    var temp = document.createElement('script');
+    temp.setAttribute('type', 'text/javascript');
+    // 获得的地址类似：chrome-extension://ihcokhadfjfchaeagdoclpnjdiokfakg/js/inject.js
+    temp.src = chrome.extension.getURL(jsPath);
+    temp.onload = function()
+    {
+        // 放在页面不好看，执行完后移除掉
+        // this.parentNode.removeChild(this);
+    };
+    document.body.appendChild(temp);
+}
+
 function initCustomPanel()
 {
 	var panel = document.createElement('div');
@@ -63,9 +82,9 @@ function initCustomPanel()
 	panel.innerHTML = `
 		<h2>injected-script操作content-script演示区：</h2>
 		<div class="btn-area">
+			<a href="javascript:invokeContentScript('sendMessageToBackground()')">发送消息到后台或者popup</a><br>
 			<a href="javascript:sendMessageToContentScriptByPostMessage('你好，我是普通页面！')">通过postMessage发送消息给content-script</a><br>
 			<a href="javascript:sendMessageToContentScriptByEvent('你好啊！我是通过DOM事件发送的消息！')">通过DOM事件发送消息给content-script</a><br>
-			<a href="javascript:invokeContentScript('sendMessageToBackground()')">发送消息到后台或者popup</a><br>
 		</div>
 		<div id="my_custom_log">
 		</div>
@@ -73,21 +92,34 @@ function initCustomPanel()
 	document.body.appendChild(panel);
 }
 
-// 向页面注入JS
-function injectCustomJs(jsPath)
-{
-	jsPath = jsPath || 'js/inject.js';
-	var temp = document.createElement('script');
-	temp.setAttribute('type', 'text/javascript');
-	// 获得的地址类似：chrome-extension://ihcokhadfjfchaeagdoclpnjdiokfakg/js/inject.js
-	temp.src = chrome.extension.getURL(jsPath);
-	temp.onload = function()
-	{
-		// 放在页面不好看，执行完后移除掉
-		this.parentNode.removeChild(this);
-	};
-	document.body.appendChild(temp);
+
+function initCustomEventListen() {
+    var hiddenDiv = document.getElementById('myCustomEventDiv');
+    if(!hiddenDiv) {
+        hiddenDiv = document.createElement('div');
+        hiddenDiv.style.display = 'none';
+        hiddenDiv.id = 'myCustomEventDiv';
+        document.body.appendChild(hiddenDiv);
+    }
+    hiddenDiv.addEventListener('myCustomEvent', function() {
+        var eventData = document.getElementById('myCustomEventDiv').innerText;
+        tip('收到自定义事件：' + eventData);
+    });
 }
+
+
+window.addEventListener("message", function(e)
+{
+    console.log('收到消息：', e.data);
+    if(e.data && e.data.cmd == 'invoke') {
+        eval('('+e.data.code+')');
+    }
+    else if(e.data && e.data.cmd == 'message') {
+        tip(e.data.data);
+    }
+}, false);
+
+
 
 // 接收来自后台的消息
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
@@ -124,31 +156,7 @@ chrome.runtime.onConnect.addListener(function(port) {
 	}
 });
 
-window.addEventListener("message", function(e)
-{
-	console.log('收到消息：', e.data);
-	if(e.data && e.data.cmd == 'invoke') {
-		eval('('+e.data.code+')');
-	}
-	else if(e.data && e.data.cmd == 'message') {
-		tip(e.data.data);
-	}
-}, false);
 
-
-function initCustomEventListen() {
-	var hiddenDiv = document.getElementById('myCustomEventDiv');
-	if(!hiddenDiv) {
-		hiddenDiv = document.createElement('div');
-		hiddenDiv.style.display = 'none';
-		hiddenDiv.id = 'myCustomEventDiv';
-		document.body.appendChild(hiddenDiv);
-	}
-	hiddenDiv.addEventListener('myCustomEvent', function() {
-		var eventData = document.getElementById('myCustomEventDiv').innerText;
-		tip('收到自定义事件：' + eventData);
-	});
-}
 
 var tipCount = 0;
 // 简单的消息通知

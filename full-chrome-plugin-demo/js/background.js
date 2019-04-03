@@ -1,3 +1,5 @@
+// 后台常驻
+
 //-------------------- 右键菜单演示 ------------------------//
 chrome.contextMenus.create({
 	title: "测试右键菜单",
@@ -48,28 +50,29 @@ chrome.contextMenus.create({
 	});
 })();*/
 
+
+$('#test_cors').click((e) => {
+    $.get('https://www.baidu.com', function(html){
+        console.log( html);
+        alert('跨域调用成功！');
+    });
+});
+
+$('#get_popup_title').click(e => {
+    var views = chrome.extension.getViews({type:'popup'});
+    if(views.length > 0) {
+        alert(views[0].document.title);
+    } else {
+        alert('popup未打开！');
+    }
+});
+
 // 监听来自content-script的消息
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
 {
 	console.log('收到来自content-script的消息：');
 	console.log(request, sender, sendResponse);
 	sendResponse('我是后台，我已收到你的消息：' + JSON.stringify(request));
-});
-
-$('#test_cors').click((e) => {
-	$.get('https://www.baidu.com', function(html){
-		console.log( html);
-		alert('跨域调用成功！');
-	});
-});
-
-$('#get_popup_title').click(e => {
-	var views = chrome.extension.getViews({type:'popup'});
-	if(views.length > 0) {
-		alert(views[0].document.title);
-	} else {
-		alert('popup未打开！');
-	}
 });
 
 // 获取当前选项卡ID

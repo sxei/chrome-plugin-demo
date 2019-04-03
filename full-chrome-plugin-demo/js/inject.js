@@ -1,4 +1,7 @@
+// 调用页面JS, 访问JS变量
+
 // 通过postMessage调用content-script
+
 function invokeContentScript(code)
 {
 	window.postMessage({cmd: 'invoke', code: code}, '*');
