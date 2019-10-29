@@ -12,6 +12,10 @@ demo部分截图：
 
 ![](http://image.liuxianan.com/201707/20170710_223150_516_6129.png)
 
+鉴于有很多网友有交流学习Chrome插件的诉求，所以最近建了一个QQ群，仅仅是为了提供一个互相交流学习的平台：
+
+![](http://image.haoji.me/201910/20191029_153941_112_3060.jpg)
+
 ## 仓库说明
 
 * `full-chrome-plugin-demo`：大部分demo代码都在这个仓库；
