@@ -12,9 +12,9 @@ demo部分截图：
 
 ![](http://image.liuxianan.com/201707/20170710_223150_516_6129.png)
 
-鉴于有很多网友有交流学习Chrome插件的诉求，所以最近建了一个QQ群，仅仅是为了提供一个互相交流学习的平台：
+鉴于有很多网友有交流学习Chrome插件的诉求，所以最近建了一个插件开发交流群，仅仅是为了提供一个互相交流学习的平台：
 
-![_W832xH370_](https://img.alicdn.com/tfs/TB1KGO.GUT1gK0jSZFrXXcNCXXa-1664-740.png)
+![_W791xH370_](https://img.alicdn.com/tfs/TB1rvUrJpY7gK0jSZKzXXaikpXa-1582-740.png)
 
 如果微信二维码过期，请扫描下面二维码加我微信备注“Chrome插件开发交流”拉你进群(不私聊)，否则不予通过。
 
