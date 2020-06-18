@@ -16,10 +16,6 @@ demo部分截图：
 
 ![_W791xH370_](https://img.alicdn.com/tfs/TB1rvUrJpY7gK0jSZKzXXaikpXa-1582-740.png)
 
-如果微信二维码过期，请扫描下面二维码加我微信备注“Chrome插件开发交流”拉你进群(不私聊)，否则不予通过。
-
-![](https://img.alicdn.com/tfs/TB1BM59GFY7gK0jSZKzXXaikpXa-250-292.png)
-
 ## 仓库说明
 
 * `full-chrome-plugin-demo`：大部分demo代码都在这个仓库；
