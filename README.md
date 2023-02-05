@@ -84,8 +84,8 @@ Chrome插件没有严格的项目结构要求，只要保证本目录有一个`m
 
 ```javascript
 {
-	// 清单文件的版本，这个必须写，而且必须是2
-	"manifest_version": 2,
+	// 清单文件的版本，这个必须写，在2023年，chrome浏览器将移除对2的支持，该使用3
+	"manifest_version": 3,
 	// 插件的名称
 	"name": "demo",
 	// 插件的版本
